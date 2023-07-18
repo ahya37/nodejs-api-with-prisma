@@ -1,7 +1,7 @@
-import { prismaClient } from "../aplication/database";
-import { ResponseError } from "../error/response-error";
-import { createContactValidation, getContactValidation, searchContactValidation, updateContactValidation } from "../validation/contact-validation"
-import { validate } from "../validation/validation"
+import { prismaClient } from "../aplication/database.js";
+import { ResponseError } from "../error/response-error.js";
+import { createContactValidation, getContactValidation, searchContactValidation, updateContactValidation } from "../validation/contact-validation.js"
+import { validate } from "../validation/validation.js"
 
 const create = async (user, request) => {
     const contact = validate(createContactValidation, request);
@@ -168,7 +168,7 @@ const search = async (user, request) => {
         data: contacts,
         paging:{
             page: request.page,
-            total_items : totalItems,
+            total_item : totalItems,
             total_page : Math.ceil(totalItems / request.size)
         }
     }
