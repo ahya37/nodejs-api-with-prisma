@@ -3,6 +3,9 @@ import userController from "../controller/user-controller.js";
 import contactController from "../controller/contact-controller.js";
 import { authMiddleware } from "../middleware/auth.middleware.js";
 import addressController from "../controller/address-controller.js";
+import qrcodeController from "../controller/qrcode-controller.js";
+import messageController from "../controller/message-controller.js";
+import accountController from "../controller/account-controller.js";
 
 const userRouter = new express.Router();
 userRouter.use(authMiddleware);
@@ -26,7 +29,14 @@ userRouter.put('/api/contacts/:contactId/addresses/:addressId', addressControlle
 userRouter.delete('/api/contacts/:contactId/addresses/:addressId', addressController.remove);
 userRouter.get('/api/contacts/:contactId/addresses', addressController.list);
 
+// QRCODE API
+userRouter.post('/api/qrcode', qrcodeController.create);
 
+// MESSAGE API
+userRouter.post('/api/message', messageController.sendMessage);
+
+// Accounts API
+userRouter.post('/api/accounts', accountController.create);
 
 export {
     userRouter

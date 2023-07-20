@@ -16,6 +16,7 @@ model User {
   name  String @db.VarChar(100)
   token String? @db.VarChar(100)
   contacts Contact[]
+  accounts Accounts[]
 
   @@map("users")
 }
@@ -44,4 +45,18 @@ model Address {
   contact Contact @relation(fields: [contactId], references: [id])
 
   @@map("addresses")
+}
+
+model Accounts {
+  id Int @id @default(autoincrement())
+  username String @db.VarChar(100)
+  whatsapp_id Int
+  status String? @db.VarChar(20)
+  created_by Int
+  updated_by Int
+  created_at DateTime @default(now()) @db.Timestamp(6)
+  updated_at DateTime @default(now()) @db.Timestamp(6)
+  user User @relation(fields: [username], references: [username])
+
+  @@map("accounts")
 }

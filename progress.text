@@ -1,0 +1,57 @@
+- MEMBUAT SATU AKUN SATU DEVICE
+- CREATE UNIK SESION ID SAAT PERTAMA KALI SCAN QR CODE
+    - SESSION ID DIBUAT DARI USERNAME  SESUAI AKUN LOGIN#
+    - USERNAME DIBUAT UNIK SAAT REGISTER AKUN BARU#
+    - USERNAME JUGA SEBAGAI SENDER DALAM PENGIRIMAN PESAN
+
+
+- BUAT LOGGER UNTUK LOGGING
+- CEK SESSION  PADA SERVER RUNNING#
+    - BUAT FUNCTION UNTUK MENYIMPAN SESSION WA AGAR BISA DI AKSES DIMANANPUN#
+
+- TABLES :
+        #untuk menyimpan data akun 
+        - accounts (
+            id,
+            whatsapp_id (nomor WA),
+            unique_id (id pengirim /  jadikan sebagai sender),
+            status (conected / no),
+            created_by, 
+            update_by, 
+            created_at, 
+            update_at
+
+        )
+        #untuk menyimpan data kontak
+        - contacts (
+            id, user_id, number, created_by, update_by, created_at, update_at 
+        )
+
+        #untuk menyimpan campaigns / judul broadcast pengiriman pessan
+        - campaigns (
+            id, 
+            name, 
+            account (menyimpan pengirim pesan / akun wa), 
+            type (text, media, dll),
+            contact (menyimpan jumlah kontak per campaigns), 
+            status (status pengirim pesan  = complete / tidak), 
+            created_by, 
+            update_by, 
+            created_at, 
+            update_at
+        )
+
+        #untuk menyimpan riwayat pengiriman pesan
+        - sents (
+            id, 
+            campaign_id,
+            account_id,
+            receipent,
+            message,
+            status (status pengirim per pesan),
+            created_by, 
+            update_by, 
+            created_at, 
+            update_at
+
+        )
